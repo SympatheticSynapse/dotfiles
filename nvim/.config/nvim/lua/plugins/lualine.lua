@@ -4,7 +4,7 @@ return {
   config = function()
     require('lualine').setup({
       options = {
-        theme = 'nord'
+        theme = 'seoul256'
       }
     })
   end
