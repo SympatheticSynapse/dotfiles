@@ -68,4 +68,4 @@ setopt extended_history hist_expire_dups_first hist_ignore_dups hist_ignore_spac
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/scripts
