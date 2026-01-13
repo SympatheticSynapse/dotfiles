@@ -9,7 +9,7 @@ return {
 			require("catppuccin").setup({
 				transparent_background = true,
 			})
-			-- vim.cmd.colorscheme("catppuccin-mocha")
+			vim.cmd.colorscheme("catppuccin-macchiato")
 		end,
 	},
 	{
@@ -17,7 +17,7 @@ return {
 		config = function()
 			require("vinyl").setup({
 			})
-			vim.cmd.colorscheme("vinyl")
+			-- vim.cmd.colorscheme("vinyl")
 		end,
 	},
 }
