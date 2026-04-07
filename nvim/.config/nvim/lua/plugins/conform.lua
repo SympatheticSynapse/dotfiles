@@ -25,7 +25,7 @@ return {
 		})
 
 		-- Manual format keymap
-		vim.keymap.set("n", "<leader>fg", function()
+		vim.keymap.set("n", "<leader>fc", function()
 			conform.format({ async = true, lsp_fallback = true })
 		end, { desc = "Format buffer" })
 	end,
