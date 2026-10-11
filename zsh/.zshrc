@@ -12,9 +12,21 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # --- Clipboard yank (vi-mode) ---
+# macOS: pbcopy. Linux with a display: wl-copy or xclip. Anywhere else
+# (a container, an SSH session): OSC 52, which asks the terminal itself
+# to set the clipboard, so a yank inside a devcontainer still lands on
+# the machine in front of you. Never an error if none of them works.
 function vi-yank-clipboard {
   zle vi-yank
-  echo "$CUTBUFFER" | pbcopy -i
+  if (( $+commands[pbcopy] )); then
+    echo "$CUTBUFFER" | pbcopy -i
+  elif (( $+commands[wl-copy] )) && [[ -n $WAYLAND_DISPLAY ]]; then
+    print -rn -- "$CUTBUFFER" | wl-copy
+  elif (( $+commands[xclip] )) && [[ -n $DISPLAY ]]; then
+    print -rn -- "$CUTBUFFER" | xclip -selection clipboard
+  elif [[ -w /dev/tty ]]; then
+    printf "\e]52;c;%s\a" "$(print -rn -- "$CUTBUFFER" | base64 | tr -d "\n")" > /dev/tty
+  fi
 }
 zle -N vi-yank-clipboard
 bindkey -M vicmd 'y' vi-yank-clipboard
