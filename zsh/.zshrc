@@ -25,10 +25,16 @@ alias lss='ls --color | sort -V'
 alias ll='ls -lah --color'
 alias home='cd'
 alias godir='cd ~/Workspace/go'
+alias devpod=/Applications/DevPod.app/Contents/MacOS/devpod-cli
+alias k='kubectl'
 alias v='nvim'
 alias cat='bat'
 alias fuzz="fzf --preview 'cat {}'"
 alias rip='rg --line-number --with-filename --color=always . | fzf --ansi --delimiter : --preview "bat --color=always {1} --highlight-line {2}" --preview-window ~8,+{2}-5'
+alias tf='terraform'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
 
 # --- Editor environment ---
 export VISUAL=nvim
@@ -52,3 +58,6 @@ add-zsh-hook precmd () {
   zle && zle reset-prompt
 }
 
+export PATH="$HOME/.local/bin:$PATH"
+export KUBECONFIG=~/.kube/rke2-homelab.yaml
+export PATH="/usr/local/sbin:$PATH"
