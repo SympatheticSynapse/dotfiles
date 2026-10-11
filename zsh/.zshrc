@@ -25,7 +25,7 @@ function vi-yank-clipboard {
   elif (( $+commands[xclip] )) && [[ -n $DISPLAY ]]; then
     print -rn -- "$CUTBUFFER" | xclip -selection clipboard
   elif [[ -w /dev/tty ]]; then
-    printf "\e]52;c;%s\a" "$(print -rn -- "$CUTBUFFER" | base64 | tr -d "\n")" > /dev/tty
+    { printf "\e]52;c;%s\a" "$(print -rn -- "$CUTBUFFER" | base64 | tr -d "\n")" > /dev/tty } 2>/dev/null
   fi
 }
 zle -N vi-yank-clipboard
